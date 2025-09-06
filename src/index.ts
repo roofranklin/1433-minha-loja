@@ -23,10 +23,10 @@ const pedido1 = new Pedido(101, new Date(), cliente1);
 const pedido2 = new Pedido(102, new Date(), cliente2);
 
 // Adicionando itens aos pedidos
-pedido1.itens.push(item1);
-pedido1.itens.push(item2);
-pedido2.itens.push(item3);
-pedido2.itens.push(item4);
+pedido1.adicionarItem(item1);
+pedido1.adicionarItem(item2);
+pedido2.adicionarItem(item3);
+pedido2.adicionarItem(item4);
 
 // Associando pedidos aos clientes
 cliente1.pedidos.push(pedido1);
@@ -41,20 +41,9 @@ console.log(`Total do pedido 2: R$ ${pedido2.total.toFixed(2)}`);
 console.log('\n--- Verificando Conexões ---');
 console.log('Cliente do pedido 1:');
 console.log(cliente1);
-console.log('Cliente do pedido 2:');
-console.log(cliente2);
+console.log('\nResumo do pedido 1:');
+console.log(pedido1.obterResumo());
 
-// Listando pedidos de um cliente
-console.log(`\n--- Pedidos do cliente ---`);
-console.log(`Cliente: ${cliente1.nome}`);
-cliente1.pedidos.forEach(pedido => {
-    console.log(`Pedido #${pedido.id} - Total: R$ ${pedido.total.toFixed(2)}`);
-});
-
-console.log(`\nCliente: ${cliente2.nome}`);
-cliente2.pedidos.forEach(pedido => {
-    console.log(`Pedido #${pedido.id} - Total: R$ ${pedido.total.toFixed(2)}`);
-});
 
 console.log('\n--- Sistema finalizado ---');
 
