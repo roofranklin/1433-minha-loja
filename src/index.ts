@@ -29,8 +29,8 @@ pedido2.adicionarItem(item3);
 pedido2.adicionarItem(item4);
 
 // Associando pedidos aos clientes
-cliente1.pedidos.push(pedido1);
-cliente2.pedidos.push(pedido2);
+cliente1.adicionarPedido(pedido1);
+cliente2.adicionarPedido(pedido2);
 
 // Calculando o total dos pedidos
 console.log('\n--- Pedidos Criados ---');
@@ -44,6 +44,17 @@ console.log(cliente1);
 console.log('\nResumo do pedido 1:');
 console.log(pedido1.obterResumo());
 
+console.log('\n--- Testando método de total gasto ---');
+console.log(`\nTotal gasto por ${cliente1.nome}: R$ ${cliente1.calcularTotalGasto().toFixed(2)}`);
+
+console.log('\n--- Testando fluxo de entrega ---');
+console.log(`\n Status inicial do pedido 1: ${pedido1.status}`);
+pedido1.pagar();
+console.log(`\n Status do pedido 1 depois de pagar: ${pedido1.status}`);
+pedido1.enviar();
+console.log(`\n Status do pedido 1 depois de enviar: ${pedido1.status}`);
+pedido1.entregar();
+console.log(`\n Status do pedido 1 depois de entregar: ${pedido1.status}`);
 
 console.log('\n--- Sistema finalizado ---');
 
