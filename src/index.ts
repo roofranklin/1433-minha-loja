@@ -44,6 +44,16 @@ console.log(cliente1);
 console.log('\nResumo do pedido 1:');
 console.log(pedido1.obterResumo());
 
+console.log('\n--- Testando validações do ItemPedido ---');
+console.log('\nTentando criar item com valor negativo...');
+const itemInvalido1 = new ItemPedido("Produto Ruim", -100, 1);
+console.log(itemInvalido1);
+
+console.log('\nTentando atribuir quantidade negativa a um item existente');
+console.log(`Quantidade original do item2: ${item2.quantidade}`);
+item2.quantidade = -5; // Deve mostrar mensagem de erro
+console.log(`Quantidade do item2 após tentativa de alteração: ${item2.quantidade}`);
+
 console.log('\n--- Testando método de total gasto ---');
 console.log(`\nTotal gasto por ${cliente1.nome}: R$ ${cliente1.calcularTotalGasto().toFixed(2)}`);
 
