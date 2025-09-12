@@ -66,5 +66,19 @@ console.log(`\n Status do pedido 1 depois de enviar: ${pedido1.status}`);
 pedido1.entregar();
 console.log(`\n Status do pedido 1 depois de entregar: ${pedido1.status}`);
 
+console.log('\n--- Testando validações dos clientes ---');
+console.log('Tentando criar um cliente com nome inválido...');
+const clienteInvalido1 = new Cliente(3, "A", "ana@email.com");
+
+console.log('Tentando criar um cliente com email inválido...');
+const clienteInvalido2 = new Cliente(4, "Beatriz", "beatrizemail.com");
+console.log(clienteInvalido2);
+console.log('Tentando alterar o nome do cliente para um nome inválido');
+const clienteValido = new Cliente(5, "Eduardo", "edu@email.com");
+console.log(`Nome original do cliente: ${clienteValido.nome}`);
+
+clienteValido.nome = "E";
+console.log(`Nome após a tentativa de alteração: ${clienteValido.nome}`);
+
 console.log('\n--- Sistema finalizado ---');
 
