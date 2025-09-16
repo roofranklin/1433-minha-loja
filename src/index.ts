@@ -1,6 +1,8 @@
 import { Cliente } from './Cliente';
 import { Pedido } from './Pedido';
 import { ItemPedido } from './ItemPedido';
+import { ProdutoFisico } from './ProdutoFisico';
+import { ProdutoDigital } from './ProdutoDigital';
 
 console.log('--- Bem-vindo à Minha Loja! ---');
 
@@ -12,11 +14,17 @@ console.log('\n--- Clientes Cadastrados ---');
 console.log(cliente1);
 console.log(`Email do cliente 2: ${cliente2.email}`); 
 
+// Criando instâncias de Produtos
+const livro = new ProdutoFisico(1, "O Senhor dos Anéis", 50, "Livro de Fantasia", 500);
+const ebook = new ProdutoDigital(2, "Game of Thrones", 30, "E-book de Fantasia", "http://link.com");
+const placaDeVideo = new ProdutoFisico(3, "Placa de Vídeo", 3500, "Placa de vídeo para jogos", 1000);
+const mouseGamer = new ProdutoFisico(4, "Mouse Gamer", 150, "Mouse para jogos", 200);
+
 // Criando instâncias dos itens de pedido
-const item1 = new ItemPedido("Placa de vídeo", 1500.00, 1);
-const item2 = new ItemPedido("Monitor 4K", 1200.00, 2);
-const item3 = new ItemPedido("Teclado mecânico", 300.00, 1);
-const item4 = new ItemPedido("Mouse gamer", 150.00, 1);
+const item1 = new ItemPedido(placaDeVideo, 1);
+const item2 = new ItemPedido(mouseGamer, 2);
+const item3 = new ItemPedido(ebook, 1);
+const item4 = new ItemPedido(livro, 1);
 
 // Criando instâncias dos pedidos
 const pedido1 = new Pedido(101, new Date(), cliente1);
@@ -45,9 +53,6 @@ console.log('\nResumo do pedido 1:');
 console.log(pedido1.obterResumo());
 
 console.log('\n--- Testando validações do ItemPedido ---');
-console.log('\nTentando criar item com valor negativo...');
-const itemInvalido1 = new ItemPedido("Produto Ruim", -100, 1);
-console.log(itemInvalido1);
 
 console.log('\nTentando atribuir quantidade negativa a um item existente');
 console.log(`Quantidade original do item2: ${item2.quantidade}`);
@@ -83,12 +88,6 @@ console.log(`Nome após a tentativa de alteração: ${clienteValido.nome}`);
 console.log("\n--- Testando Serialização ---");
 const jsonPedido = JSON.stringify(pedido1, null, 2);
 console.log(jsonPedido);
-
-console.log("\n--- Testando Desserialização ---");
-const dadosDoServidor = JSON.parse(jsonPedido);
-const pedidoRecriado = Pedido.fromData(dadosDoServidor, cliente1);
-console.log(pedidoRecriado);
-console.log(`Total do pedido recriado: R$ ${pedidoRecriado.total.toFixed(2)}`);
 
 console.log("\n--- Testando Serialização/Desserialização do cliente ---");
 const clienteOriginal = new Cliente(10, "Joana Silva", "joana@gmail.com");
