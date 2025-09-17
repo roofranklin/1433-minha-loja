@@ -1,17 +1,17 @@
 import { ItemPedido } from "./ItemPedido";
-import { Cliente } from "./Cliente";
+import { ClienteBase } from "./ClienteBase";
 
 export class Pedido {
     private _total: number = 0;
     private _status: string = "pendente";
 
-    public cliente: Cliente;
+    public cliente: ClienteBase;
     private _itens: ItemPedido[] = [];
 
     constructor(
         public id: number,
         public data: Date,
-        cliente: Cliente
+        cliente: ClienteBase
     ) {
         this.cliente = cliente;
         console.log(`Pedido #${this.id} criado na data ${this.data.toLocaleString()}!`);
@@ -35,7 +35,16 @@ export class Pedido {
     }
 
     public obterResumo(): string {
-        let resumo = `Pedido #${this.id} - Cliente: ${this.cliente.nome}\n`;
+        let nomeCliente: string;
+        if ('nome' in this.cliente) {
+            nomeCliente = (this.cliente as any).nome;
+        } else if ('razaoSocial' in this.cliente) {
+            nomeCliente = (this.cliente as any).razaoSocial;
+        } else {
+            nomeCliente = 'Cliente Desconhecido';
+        }
+
+        let resumo = `Pedido #${this.id} - Cliente: ${nomeCliente}\n`;
         resumo += `Data: ${this.data.toLocaleDateString()}\n`
         resumo += `Itens:\n`;
         for (const item of this._itens) {
