@@ -9,4 +9,8 @@ export class ClientePessoaJuridica extends ClienteBase {
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
     }
+
+    public override exibirInfo(): void {
+        console.log(`Empresa: ${this.razaoSocial}, CNPJ: ${this.cnpj}`);
+    }
 }

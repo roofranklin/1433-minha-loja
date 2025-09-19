@@ -5,6 +5,7 @@ import { ProdutoDigital } from './ProdutoDigital';
 import { ClientePessoaFisica } from './ClientePessoaFisica';
 import { ClientePessoaJuridica } from './ClientePessoaJuridica';
 import { Produto } from './Produto';
+import { ClienteBase } from './ClienteBase';
 
 console.log('--- Bem-vindo à Minha Loja! ---');
 
@@ -63,6 +64,13 @@ meusProdutos.forEach(p => {
     console.log(p.getDescricaoCompleta());
     // O código aqui não se importa com o tipo exato de p
     // Ele só confia que 'p' sabe se descrever
+})
+
+console.log('\n--- Testando Polimorfismo com clientes ---');
+const clientes: ClienteBase[] = [clientePF, clientePJ];
+
+clientes.forEach(cliente => {
+    cliente.exibirInfo();
 })
 
 console.log('\n--- Sistema finalizado ---');

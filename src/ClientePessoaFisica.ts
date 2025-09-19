@@ -9,4 +9,8 @@ export class ClientePessoaFisica extends ClienteBase {
         this.nome = nome;
         this.cpf = cpf;
     }
+
+    public override exibirInfo(): void {
+        console.log(`Cliente: ${this.nome}, CPF: ${this.cpf}`);
+    }
 }
