@@ -53,4 +53,9 @@ export abstract class ClienteBase {
             this.email = dados.email;
         }
     }
+
+    public exibirInfo(): void {
+        console.log(`Email: ${this.email}`);
+    }
+    
 }
